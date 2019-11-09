@@ -1,0 +1,181 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tab2">  
+          </ion-back-button>
+         </ion-buttons>
+    <ion-title>Cattle Update</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngFor="let item of cattles" color="light">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-card-title>{{item.Tag}} of {{item.Age}} years</ion-card-title>
+        <ion-card-subtitle>Breed: {{item.Breed}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+        </span>
+          <ng-template #elseBlock>
+            <ion-card-header>
+              <ion-card-title>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label color="medium">Edit</ion-label>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button fill="outline" color="medium" size="small" (click)="item.isEdit = false">
+                        Cancel
+                      </ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                        Update
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-card-title>
+            </ion-card-header>
+          <ion-card-content>
+            <ion-card>
+              <ion-row>
+                <ion-col>
+                 <ion-item>
+                      <ion-label color="success">Tag# :</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-input placeholder="Tag No*" [(ngModel)]="item.EditTag"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                 <ion-item>
+                      <ion-label color="success">Age :</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-input placeholder="Age" [(ngModel)]="item.EditAge"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                <ion-item>
+                    <ion-label color="success">Type :</ion-label>
+                  </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-select interface="popover" placeholder="Type" [(ngModel)]="item.EditType">
+                        <ion-select-option value="Cow">Cow</ion-select-option>
+                        <ion-select-option value="Bull">Bull</ion-select-option>
+                    </ion-select>
+                 </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label color="success">Breed :</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                      <ion-input placeholder="Breed" [(ngModel)]="item.EditBreed"></ion-input>
+                  </ion-col>
+                </ion-row>
+              <ion-row>
+                  <ion-row>
+                      <ion-col>
+                        <ion-item>
+                            <ion-label color="success">Reg.Date :</ion-label>
+                        </ion-item>
+                          </ion-col>
+                          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="item.EditRegDate"></ion-datetime>
+                    </ion-row>
+                    </ion-row>
+                  </ion-card>
+                  <span *ngIf="item.EditType === 'Cow'">
+                  <ion-card>
+                    <ion-row>
+                        <ion-col>
+                          <ion-item>
+                              <ion-label color="success"># Calves :</ion-label>
+                            </ion-item>
+                          </ion-col>
+                          <ion-col offset="2">
+                            <ion-input placeholder="CalvingNo" [(ngModel)]="item.EditCalvingNo"></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                          <ion-col>
+                            <ion-item>
+                                <ion-label color="success">Is Pregnant? :  </ion-label>
+                              </ion-item>
+                            </ion-col>
+                            <ion-col>
+                                <ion-select interface="popover" placeholder="PregStatus" [(ngModel)]="item.EditPregStatus">
+                                    <ion-select-option value="Yes">Yes</ion-select-option>
+                                    <ion-select-option value="No">No</ion-select-option>
+                                </ion-select>
+                          </ion-col>
+                        </ion-row>
+                        <span *ngIf="item.EditPregStatus === 'Yes'">
+                        <ion-row>
+                            <ion-col>
+                              <ion-item>
+                                  <ion-label color="success"># Months Pregnant :</ion-label>
+                                </ion-item>
+                              </ion-col>
+                              <ion-col offset="-1">
+                                <ion-input placeholder="# months preg" [(ngModel)]="item.EditCalvingMon"></ion-input>
+                            </ion-col>
+                          </ion-row>
+                        </span>
+                          <ion-row>
+                            <ion-col>
+                              <ion-item>
+                                  <ion-label color="success">Milking Status :</ion-label>
+                                </ion-item>
+                              </ion-col>
+                              <ion-col>
+                                  <ion-select interface="popover" placeholder="MilkingStatus" [(ngModel)]="item.EditMilkingStatus">
+                                      <ion-select-option value="Yes">Yes</ion-select-option>
+                                      <ion-select-option value="No">No</ion-select-option>
+                                  </ion-select>
+                            </ion-col>
+                          </ion-row>
+                          <span *ngIf="item.EditMilkingStatus === 'Yes'">
+                          <ion-row>
+                              <ion-col>
+                                <ion-item>
+                                    <ion-label color="success">Milk in Litres :</ion-label>
+                                  </ion-item>
+                                </ion-col>
+                                <ion-col offset="1">
+                                  <ion-input placeholder="MilkProd" [(ngModel)]="item.EditMilkProd"></ion-input>
+                              </ion-col>
+                            </ion-row>
+                             <ion-row>
+                                  <ion-col>
+                                    <ion-item>
+                                        <ion-label color="success">Fat in Milk (%):</ion-label>
+                                      </ion-item>
+                                    </ion-col>
+                                    <ion-col offset="1">
+                                      <ion-input placeholder="FatMilk" [(ngModel)]="item.EditFatMilk"></ion-input>
+                                  </ion-col>
+                                </ion-row>
+                              </span>
+                              </ion-card>
+                            </span>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+</ion-content>

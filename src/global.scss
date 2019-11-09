@@ -24,3 +24,29 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.card_one {
+    background-color: #213e74;
+  }
+
+  .body {
+    background-color: #edeff1;
+  }
+  .pane {
+    background: url(./assets/Diary_Cows.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+tool {
+    --background: url(./assets/wood.jpeg);
+    --background-repeat: no-repeat;
+    --background-size: cover;  
+}
+
+ion-content{
+    --background: url(./assets/wood.jpeg);
+    --background-repeat: no-repeat;
+    --background-size: cover;  
+    }

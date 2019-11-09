@@ -1,9 +1,27 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-title>
-      Tab Two
+      Cattle Management
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  
+<ion-card class="body">
+  <ion-grid>
+    <ion-row><ion-col>
+      <ion-button color="secondary" expand="full" [routerLink]="['./', 'cattle-registration']">Cattle Registration</ion-button>
+    </ion-col></ion-row>
+    <ion-row><ion-col>
+      <ion-button  color="tertiary" expand="full" [routerLink]="['./', 'cattle-list']">Cattle List</ion-button>
+    </ion-col></ion-row>
+    <ion-row><ion-col>
+        <ion-button color="success" expand="full" [routerLink]="['./', 'cattle-update']">Cattle Update</ion-button>
+      </ion-col></ion-row>
+    <ion-row><ion-col>
+      <ion-button expand="full" [routerLink]="['./', 'create']">Reports</ion-button>
+    </ion-col></ion-row>
+  </ion-grid>
+</ion-card>
+</ion-content>

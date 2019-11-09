@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { Tab2Page } from '../tab2/tab2.page';
 
 const routes: Routes = [
   {
@@ -17,13 +18,23 @@ const routes: Routes = [
           }
         ]
       },
-      {
-        path: 'tab2',
+       {path: 'tab2',
         children: [
           {
-            path: '',
-            loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+            path: '', loadChildren: () =>
+            import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+          },
+          {
+              path: 'cattle-registration',
+              loadChildren: './tab2/cattle-registration/cattle-registration.module#CattleRegistrationPageModule'
+            },
+            {
+              path: 'cattle-list',
+              loadChildren: './tab2/cattle-list/cattle-list.module#CattleListPageModule'
+            },
+            {
+              path: 'cattle-update',
+              loadChildren: './tab2/cattle-update/cattle-update.module#CattleUpdatePageModule'
           }
         ]
       },
